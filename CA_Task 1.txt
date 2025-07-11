@@ -1,0 +1,108 @@
+Microsoft Windows [Version 10.0.26100.4061]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\HP>cd C:\Users\HP\OneDrive\Desktop\CodeAlfa
+
+C:\Users\HP\OneDrive\Desktop\CodeAlfa>sc query npcap
+
+SERVICE_NAME: npcap
+        TYPE               : 1  KERNEL_DRIVER
+        STATE              : 4  RUNNING
+                                (STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+
+C:\Users\HP\OneDrive\Desktop\CodeAlfa>python sniffer.py
+Source IP: 57.144.123.33
+Destination IP: 192.168.18.186
+Protocol: 6
+Payload: b'\x14f\xecc)\xbaN\x19\xb2}\x1aXP\x18\x016o\x02\x00\x00\x00\x00\xf7\xdcw%\xcb\x9f:\x00e\x96Q1\x1a\xb5\xb0\x02\xa7\xcb\xa6U\xd6v\xc9\x1a>4\x9bR'
+--------------------------------------------------
+Source IP: 192.168.18.186
+Destination IP: 57.144.123.33
+Protocol: 6
+Payload: b'\xecc\x14f\xb2}\x1aX)\xbaO\x13P\x18\x00\xfeg\xc9\x00\x00\x00\x00+\xd7Qc{\xcf>\xb5\xb6LUx\xad\xdb\xa8\x11Z\xf5\xc4\xb9mKy\x1a\xb3\xd1\xba\x80'
+--------------------------------------------------
+Source IP: 57.144.123.33
+Destination IP: 192.168.18.186
+Protocol: 6
+Payload: b'\x14f\xecc)\xbaO\x13\xb2}\x1a\x86P\x10\x016\xdf\xef\x00\x00'
+--------------------------------------------------
+
+C:\Users\HP\OneDrive\Desktop\CodeAlfa>
+C:\Users\HP\OneDrive\Desktop\CodeAlfa>
+C:\Users\HP\OneDrive\Desktop\CodeAlfa>python scapy_sniffer.py
+[+] Packet: 192.168.18.186 --> 34.170.65.59 | Protocol: 6
+    - Protocol: TCP
+    - Payload: b'\xefp\x01\xbbQU\x9d\xdc\x00\x00\x00\x00\x80\x02\xff\xffWk\x00\x00\x02\x04\x05\xb4\x01\x03\x03\x08\x01\x01\x04\x02'
+
+ Full Packet Breakdown:
+###[ Ethernet ]###
+  dst       = 82:85:a0:3a:b4:cd
+  src       = 60:e9:aa:47:f5:8b
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 52
+     id        = 57182
+     flags     = DF
+     frag      = 0
+     ttl       = 128
+     proto     = tcp
+     chksum    = 0xe41d
+     src       = 192.168.18.186
+     dst       = 34.170.65.59
+     \options   \
+###[ TCP ]###
+        sport     = 61296
+        dport     = https
+        seq       = 1364565468
+        ack       = 0
+        dataofs   = 8
+        reserved  = 0
+        flags     = S
+        window    = 65535
+        chksum    = 0x576b
+        urgptr    = 0
+        options   = [('MSS', 1460), ('NOP', None), ('WScale', 8), ('NOP', None), ('NOP', None), ('SAckOK', b'')]
+
+------------------------------------------------------------
+[+] Packet: 34.170.65.59 --> 192.168.18.186 | Protocol: 6
+    - Protocol: TCP
+    - Payload: b'\x01\xbb\xefpZ\xa4\xb5\x02QU\x9d\xdd\x80\x12\xa6h\xa1\xeb\x00\x00\x02\x04\x05\x14\x01\x01\x04\x02\x01\x03\x03\x07'
+
+ Full Packet Breakdown:
+###[ Ethernet ]###
+  dst       = 60:e9:aa:47:f5:8b
+  src       = 82:85:a0:3a:b4:cd
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 52
+     id        = 0
+     flags     = DF
+     frag      = 0
+     ttl       = 53
+     proto     = tcp
+     chksum    = 0xe7d
+     src       = 34.170.65.59
+     dst       = 192.168.18.186
+     \options   \
+###[ TCP ]###
+        sport     = https
+        dport     = 61296
+        seq       = 1520743682
+        ack       = 1364565469
+        dataofs   = 8
+        reserved  = 0
+        flags     = SA
+        window    = 42600
+        chksum    = 0xa1eb
+        urgptr    = 0
+        options   = [('MSS', 1300), ('NOP', None), ('NOP', None), ('SAckOK', b''), ('NOP', None), ('WScale', 7)]
